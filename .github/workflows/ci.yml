@@ -25,11 +25,11 @@ jobs:
     name: CI
     needs: [test, msrv, lockfile, docs, rustfmt, clippy, minimal-versions]
     runs-on: ubuntu-latest
-    if: "always()"
+    if: always()
     steps:
       - name: Failed
         run: exit 1
-        if: "contains(needs.*.result, 'failure') || contains(needs.*.result, 'cancelled') || contains(needs.*.result, 'skipped')"
+        if: contains(needs.*.result, 'failure') || contains(needs.*.result, 'cancelled') || contains(needs.*.result, 'skipped')
   test:
     name: Test
     strategy:
